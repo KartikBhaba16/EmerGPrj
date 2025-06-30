@@ -133,7 +133,7 @@ const ResourceCard = ({ resource }: { resource: Resource }) => {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Card className={`cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 ${categoryInfo.bgColor} border-0 shadow-lg`}>
+       <Card className={`cursor-pointer transition-all duration-300 border border-gray-200 hover:border-blue-400 ${categoryInfo.bgColor} hover:bg-black/ backdrop-blur-md hover:shadow-xl hover:scale-105`}>
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between mb-2">
               <div className={`w-3 h-3 rounded-full ${categoryInfo.iconBg} shadow-sm`}></div>
@@ -150,7 +150,8 @@ const ResourceCard = ({ resource }: { resource: Resource }) => {
           </CardContent>
         </Card>
       </HoverCardTrigger>
-      <HoverCardContent className="w-80" side="right">
+      <HoverCardContent className="w-80 bg-white/50 backdrop-blur-md border border-gray-200 shadow-xl p-4 rounded-lg" side="right">
+
         <div className="space-y-3">
           <div>
             <h4 className="text-sm font-bold text-gray-800">{resource.name}</h4>

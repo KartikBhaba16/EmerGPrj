@@ -31,8 +31,9 @@ const Sidebar: React.FC = () => {
     <aside className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
       <div className="p-4">
         <div className="flex items-center justify-center space-x-2 mb-6">
-          <Hospital className="h-8 w-8 text-white" />
+          <Hospital className="h-8 w-8 text-blue-400" />
           <h2 className="text-xl font-bold text-white">EmerG</h2>
+          <h1 className="text-xs font-bold text-blue-300">Management system</h1>
         </div>
       </div>
 
@@ -45,8 +46,8 @@ const Sidebar: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center px-4 py-3 text-sm font-medium rounded-md transition-colors ${
                     isActive
-                      ? 'bg-sidebar-accent text-white'
-                      : 'text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-white'
+                      ? 'bg-sidebar-accent text-blue-300'
+                      : 'text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-blue-500'
                   }`
                 }
               >
@@ -59,7 +60,7 @@ const Sidebar: React.FC = () => {
       </nav>
 
       <div className="p-4 border-t border-sidebar-border">
-        <div className="bg-sidebar-accent rounded-md p-3 text-white text-xs">
+        <div className="bg-white/5 backdrop-blur-md rounded-xl p-4 text-white text-xs border border-blue-300 shadow">
           <p className="font-medium mb-1">Emergency Capacity</p>
           <div className="w-full bg-sidebar-border rounded-full h-2">
             <div className="bg-emerG-success h-2 rounded-full" style={{ width: '0%' }}></div>
