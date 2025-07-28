@@ -15,7 +15,7 @@ import {
 
 const Sidebar: React.FC = () => {
   const navItems = [
-    { name: 'Dashboard', icon: LayoutDashboard, path: '/' },
+    { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
     { name: 'Departments', icon: Hospital, path: '/departments' },
     { name: 'Patients', icon: Timer, path: '/patients' },
     { name: 'Bed Swapping', icon: Repeat, path: '/bed-swapping' },

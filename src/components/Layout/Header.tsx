@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   const handleLogout = () => {
     // In a real app, we would handle authentication logout here
-    navigate('/login');
+    navigate('/');
     toast({
       title: "Logged out successfully",
       description: "You have been logged out of the system",

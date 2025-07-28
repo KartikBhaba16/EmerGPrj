@@ -30,7 +30,7 @@ const Login: React.FC = () => {
           title: "Login successful",
           description: `Logged in as ${role}`,
         });
-        navigate('/');
+        navigate('/dashboard');
       } else {
         toast({
           title: "Login failed",

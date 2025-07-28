@@ -29,11 +29,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           
           {/* Protected routes within AppLayout */}
+          
           <Route element={<AppLayout />}>
-            <Route path="/" element={<Dashboard />} />
+            
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/patients" element={<Patients />} />
             <Route path="/ambulance" element={<Ambulance />} />
             <Route path="/departments" element={<Dashboard />} />
