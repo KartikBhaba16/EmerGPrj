@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useToast } from '@/hooks/use-toast';
+import { useUser } from '@/contexts/UserContext';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -16,6 +17,7 @@ const Login: React.FC = () => {
   
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { setUser } = useUser();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,9 +28,26 @@ const Login: React.FC = () => {
       setIsLoading(false);
       
       if (username && password && role) {
+        // Create user object with display name and initials
+        const roleDisplayMap: { [key: string]: string } = {
+          nurse: 'Nurse',
+          chargeNurse: 'Charge Nurse',
+          flowCoordinator: 'Flow Coordinator',
+          housekeeper: 'Housekeeper'
+        };
+        
+        const displayName = username;
+        const initials = username.split(' ').map(n => n[0]?.toUpperCase()).join('').slice(0, 2) || username.slice(0, 2).toUpperCase();
+        
+        setUser({
+          username,
+          role,
+          displayName,
+          initials
+        });
         toast({
           title: "Login successful",
-          description: `Logged in as ${role}`,
+          description: `Logged in as ${roleDisplayMap[role]}`,
         });
         navigate('/dashboard');
       } else {

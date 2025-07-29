@@ -1,21 +1,41 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react' ;
 import { Bell, Clock, Hospital } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { useUser } from '@/contexts/UserContext';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user, setUser } = useUser();
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogout = () => {
     // In a real app, we would handle authentication logout here
+    //user data dump - relogin
+    setUser(null);
     navigate('/');
     toast({
       title: "Logged out successfully",
       description: "You have been logged out of the system",
     });
+    };
+    // Role display mapping - for login handling
+  const roleDisplayMap: { [key: string]: string } = {
+    nurse: 'Nurse',
+    chargeNurse: 'Charge Nurse',
+    flowCoordinator: 'Flow Coordinator',
+    housekeeper: 'Housekeeper'
+  
   };
 
   return (
@@ -29,7 +49,7 @@ const Header: React.FC = () => {
           <div className="bg-emerG-light rounded-md px-3 py-1 flex items-center">
             <Clock className="h-4 w-4 text-emerG-secondary mr-1" />
             <span className="text-sm font-medium text-emerG-dark">
-              {new Date().toLocaleDateString()} | {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              {currentTime.toLocaleDateString()} | {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit'})}
             </span>
           </div>
         </div>
@@ -43,11 +63,11 @@ const Header: React.FC = () => {
           </Button>
           <div className="flex items-center space-x-2">
             <div className="text-right">
-              <p className="text-sm font-medium">Florence N</p>
-              <p className="text-xs text-muted-foreground">Flow Coordinator</p>
+              <p className="text-sm font-medium">{user?.displayName || 'Guest'}</p>
+              <p className="text-xs text-muted-foreground">{user?.role ? roleDisplayMap[user.role] : 'Not logged in'}</p>
             </div>
             <div className="h-8 w-8 rounded-full bg-emerG-primary text-white flex items-center justify-center text-sm font-medium">
-              FN
+              {user?.initials || 'G'}
             </div>
           </div>
           <Button 
