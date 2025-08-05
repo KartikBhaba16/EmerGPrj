@@ -27,7 +27,7 @@ const Login: React.FC = () => {
     setTimeout(() => {
       setIsLoading(false);
       
-      if (username && password && role) {
+      if (username && password === 'emerglogin2025' && role) {
         // Create user object with display name and initials
         const roleDisplayMap: { [key: string]: string } = {
           nurse: 'Nurse',
